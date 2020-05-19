@@ -22,7 +22,7 @@ app.use(morgan(':graphql-query'))
 app.use('/graphql', graphqlHandler)
 
 app.use('/', (_req, res) => {
-	res.json('Go to /graphql to invoke your queries and mutations!')
+	res.json("")
 })
 
 const port = process.env.PORT || 3000

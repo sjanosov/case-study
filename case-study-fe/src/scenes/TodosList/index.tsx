@@ -42,7 +42,9 @@ enum FilterEnum {
 }
 
 const TodosList = () => {
-	const { t } = useTranslation()
+	console.log(useTranslation());
+	const {t} = useTranslation()
+	console.log(t);
 
 	const [filter, setFilter] = useState(FilterEnum.ACTIVE)
 	const { loading, data = { todos: [] } } = useQuery<{ todos: Todo[] }>(
@@ -66,7 +68,7 @@ const TodosList = () => {
 			} else if (forFilter === FilterEnum.COMPLETED) {
 				return todo.checked
 			} else if (forFilter === FilterEnum.ALL) {
-				return false
+				return true //Simona: returned false - never return any item
 			}
 		})
 
@@ -100,7 +102,7 @@ const TodosList = () => {
 										onChange={(e) => {
 											if (e.currentTarget.checked !== checked) {
 												switchCheck({
-													variables: { id: todos[0].id },
+													variables: { id }, //Simona: always retrieving id of first todo element
 													refetchQueries: ['Todos']
 												})
 											}
